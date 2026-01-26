@@ -19,4 +19,11 @@ Thumbs.db
 *.log
 
 ### Java ###
+<<<<<<< HEAD
 *.class
+=======
+*.class
+
+### Secrets ###
+secrets.properties
+>>>>>>> 1bc8560 (First commit, basic API structure)
