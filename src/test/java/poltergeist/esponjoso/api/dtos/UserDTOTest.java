@@ -4,16 +4,28 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import poltergeist.esponjoso.api.testdata.builder.UserDTOTestDataBuilder;
 
-
-@SpringBootTest
+@SpringJUnitConfig(classes = UserDTOTest.Config.class)
 public class UserDTOTest
 {
+    @Configuration
+    static class Config
+    {
+        @Bean
+        Validator validator()
+        {
+            return new LocalValidatorFactoryBean();
+        }
+    }
+
     @Autowired
     Validator validator;
 
