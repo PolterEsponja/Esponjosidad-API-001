@@ -1,0 +1,22 @@
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ ###
+.idea/
+*.iml
+
+### VSCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+
+### Java ###
+*.class
