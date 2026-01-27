@@ -7,10 +7,11 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  sonar:
+  build-and-sonar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -20,11 +21,18 @@ jobs:
           distribution: 'corretto'
           java-version: '25'
 
-      - name: Build with Maven
-        run: |
-          mvn -B -DskipTests clean package
+      - name: Cache Maven local repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-      - name: SonarQubeScan
-        uses: SonarSource/sonarqube-scan-action@v7
+      - name: Build with Maven
+        run: mvn -B -DskipTests clean package
+
+      - name: Run Sonar via Maven
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn sonar:sonar -Dsonar.login=${{ env.SONAR_TOKEN }} -Dsonar.host.url=https://sonarcloud.io
