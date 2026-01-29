@@ -2,14 +2,14 @@ package poltergeist.esponjoso.api.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import poltergeist.esponjoso.api.dtos.UserDTO;
+import poltergeist.esponjoso.api.entities.User;
 import poltergeist.esponjoso.api.enums.AccountStatusEnum;
 
 public class ValidUserAccountInformationValidator 
-implements ConstraintValidator<ValidUserAccountInformation,UserDTO.UserAccountInformation>
+implements ConstraintValidator<ValidUserAccountInformation,User.UserAccountInformation>
 {
     @Override
-    public boolean isValid(UserDTO.UserAccountInformation userAccountInformation,
+    public boolean isValid(User.UserAccountInformation userAccountInformation,
                             ConstraintValidatorContext constraintValidatorContext)
     {
         if(userAccountInformation == null) return true;

@@ -3,13 +3,13 @@ package poltergeist.esponjoso.api.testdata.builder;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import poltergeist.esponjoso.api.dtos.UserDTO;
-import poltergeist.esponjoso.api.dtos.UserDTO.UserAccountInformation;
-import poltergeist.esponjoso.api.dtos.UserDTO.UserStatistics;
+import poltergeist.esponjoso.api.entities.User;
+import poltergeist.esponjoso.api.entities.User.UserAccountInformation;
+import poltergeist.esponjoso.api.entities.User.UserStatistics;
 import poltergeist.esponjoso.api.enums.AccountStatusEnum;
 import poltergeist.esponjoso.api.enums.AccountTypeEnum;
 
-public class UserDTOTestDataBuilder
+public class UserTestDataBuilder
 {
     private String userId;
     private String username;
@@ -20,9 +20,9 @@ public class UserDTOTestDataBuilder
     private UserStatistics userStatistics;
 
     /**
-     * OBJECT CONSTRUCTOR - PRINCIPAL CLASS - UserDTO
+     * OBJECT CONSTRUCTOR - PRINCIPAL CLASS - User
      */
-    public UserDTOTestDataBuilder()
+    public UserTestDataBuilder()
     {
         this.userId = UUID.randomUUID().toString();
         this.username = "PolterEsponja10";
@@ -36,38 +36,38 @@ public class UserDTOTestDataBuilder
     /**
      * OK CASES
      */
-    public UserDTOTestDataBuilder withUserId(String userId)
+    public UserTestDataBuilder withUserId(String userId)
     {
         this.userId = userId;
         return this;
     }
-    public UserDTOTestDataBuilder withUsername(String username)
+    public UserTestDataBuilder withUsername(String username)
     {
         this.username = username;
         return this;
     }
-    public UserDTOTestDataBuilder withEmail(String email)
+    public UserTestDataBuilder withEmail(String email)
     {
         this.email = email;
         return this;
     }
-    public UserDTOTestDataBuilder withPassword(String password)
+    public UserTestDataBuilder withPassword(String password)
     {
         this.password = password;
         return this;
     }
 
-    public UserDTOTestDataBuilder withCoins(Double coins)
+    public UserTestDataBuilder withCoins(Double coins)
     {
         this.coins = coins;
         return this;
     }
-    public UserDTOTestDataBuilder withUserAccountInformation(UserAccountInformation userAccountInformation)
+    public UserTestDataBuilder withUserAccountInformation(UserAccountInformation userAccountInformation)
     {
         this.userAccountInformation = userAccountInformation;
         return this;
     }
-    public UserDTOTestDataBuilder withUserStatistics(UserStatistics userStatistics)
+    public UserTestDataBuilder withUserStatistics(UserStatistics userStatistics)
     {
         this.userStatistics = userStatistics;
         return this;
@@ -76,34 +76,34 @@ public class UserDTOTestDataBuilder
     /**
      * ERROR CASES
      */
-    public UserDTOTestDataBuilder withNullUserId()
+    public UserTestDataBuilder withNullUserId()
     {
         this.userId = null;
         return this;
     }
-    public UserDTOTestDataBuilder withNegativeCoins()
+    public UserTestDataBuilder withNegativeCoins()
     {
         this.coins = -1.0;
         return this;
     }
-    public UserDTOTestDataBuilder withNullAccountInformation()
+    public UserTestDataBuilder withNullAccountInformation()
     {
         this.userAccountInformation = null;
         return this;
     }
-    public UserDTOTestDataBuilder withNullStatistics()
+    public UserTestDataBuilder withNullStatistics()
     {
         this.userStatistics = null;
         return this;
     }
 
     /**
-     * BUILDER CONSTRUCTOR - PRINCIPAL CLASS - UserDTO
+     * BUILDER CONSTRUCTOR - PRINCIPAL CLASS - User
      * @return
      */
-    public UserDTO build()
+    public User build()
     {
-        UserDTO dto = new UserDTO();
+        User dto = new User();
         dto.setUserId(this.userId);
         dto.setUsername(this.username);
         dto.setEmail(this.email);
@@ -116,7 +116,7 @@ public class UserDTOTestDataBuilder
     }
 
     /**
-     * OBJECT - INTERNAL CLASS OF UserDTO - UserAccountInformation
+     * OBJECT - INTERNAL CLASS OF User - UserAccountInformation
      */
     public static class UserAccountInformationBuilder
     {
@@ -127,7 +127,7 @@ public class UserDTOTestDataBuilder
         private LocalDateTime suspendedAt;
 
         /**
-         * OBJECT CONSTRUCTOR - INTERNAL CLASS OF UserDTO- UserAccountInformation
+         * OBJECT CONSTRUCTOR - INTERNAL CLASS OF User- UserAccountInformation
          */
         public UserAccountInformationBuilder()
         {
@@ -177,7 +177,7 @@ public class UserDTOTestDataBuilder
         }
 
         /**
-         * BUILDER CONSTRUCTOR - INTERNAL CLASS OF UserDTO - UserAccountInformation
+         * BUILDER CONSTRUCTOR - INTERNAL CLASS OF User - UserAccountInformation
          * @return
          */
         public UserAccountInformation build()
@@ -193,7 +193,7 @@ public class UserDTOTestDataBuilder
     }
 
     /**
-     * OBJECT - INTERNAL CLASS OF UserDTO - UserStatistics
+     * OBJECT - INTERNAL CLASS OF User - UserStatistics
      */
     public static class UserStatisticsBuilder
     {
@@ -202,7 +202,7 @@ public class UserDTOTestDataBuilder
         private double apiCallsNumber;
 
         /**
-         * OBJECT CONSTRUCTOR - INTERNAL CLASS OF UserDTO- UserStatistics
+         * OBJECT CONSTRUCTOR - INTERNAL CLASS OF User- UserStatistics
          */
         public UserStatisticsBuilder()
         {
@@ -240,7 +240,7 @@ public class UserDTOTestDataBuilder
         }
 
         /**
-         * BUILDER CONSTRUCTOR - INTERNAL CLASS OF UserDTO - UserStatistics
+         * BUILDER CONSTRUCTOR - INTERNAL CLASS OF User - UserStatistics
          * @return
          */
         public UserStatistics build()
@@ -256,15 +256,15 @@ public class UserDTOTestDataBuilder
     /**
      * FAST BUILDERS
      */
-    public static UserDTO aValidUser()
+    public static User aValidUser()
     {
-        return new UserDTOTestDataBuilder().build();
+        return new UserTestDataBuilder().build();
     }
-    public static UserDTO.UserAccountInformation aValidUserAccountInformation()
+    public static User.UserAccountInformation aValidUserAccountInformation()
     {
         return new UserAccountInformationBuilder().build();
     }
-    public static UserDTO.UserStatistics aValidUserStatistics()
+    public static User.UserStatistics aValidUserStatistics()
     {
         return new UserStatisticsBuilder().build();
     }

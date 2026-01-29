@@ -1,4 +1,4 @@
-package poltergeist.esponjoso.api.dtos;
+package poltergeist.esponjoso.api.entities;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,7 @@ import poltergeist.esponjoso.api.enums.ApiKeyStatusEnum;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiKeyDTO
+public class ApiKey
 {
     @NotBlank(message = "{apiKey.id.notBlank")
     private String id;

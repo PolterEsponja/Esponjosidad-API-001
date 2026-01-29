@@ -1,4 +1,4 @@
-package poltergeist.esponjoso.api.dtos;
+package poltergeist.esponjoso.api.entities;
 
 import java.util.Set;
 
@@ -11,10 +11,10 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
-import poltergeist.esponjoso.api.testdata.builder.UserDTOTestDataBuilder;
+import poltergeist.esponjoso.api.testdata.builder.UserTestDataBuilder;
 
-@SpringJUnitConfig(classes = UserDTOTest.Config.class)
-public class UserDTOTest
+@SpringJUnitConfig(classes = UserTest.Config.class)
+public class UserTest
 {
     @Configuration
     static class Config
@@ -32,20 +32,20 @@ public class UserDTOTest
     @Test
     void should_beValid_withDefaultBuilder()
     {
-        UserDTO dto = UserDTOTestDataBuilder.aValidUser();
+        User dto = UserTestDataBuilder.aValidUser();
 
-        Set<ConstraintViolation<UserDTO>> violations = validator.validate(dto);
+        Set<ConstraintViolation<User>> violations = validator.validate(dto);
         assert violations.isEmpty() : "Violations detected: " + violations;
     }
 
     @Test
     void should_fail_whenUserIdIsNull()
     {
-        UserDTO dto = new UserDTOTestDataBuilder()
+        User dto = new UserTestDataBuilder()
                 .withNullUserId()
                 .build();
 
-        Set<ConstraintViolation<UserDTO>> violations = validator.validate(dto);
+        Set<ConstraintViolation<User>> violations = validator.validate(dto);
 
         boolean containsUserIdViolation = violations.stream()
                                         .anyMatch(v -> v.getPropertyPath().toString().equals("userId"));
@@ -56,11 +56,11 @@ public class UserDTOTest
     @Test
     void should_fail_whenCoinsNegative()
     {
-        UserDTO dto = new UserDTOTestDataBuilder()
+        User dto = new UserTestDataBuilder()
                 .withNegativeCoins()
                 .build();
 
-        Set<ConstraintViolation<UserDTO>> violations = validator.validate(dto);
+        Set<ConstraintViolation<User>> violations = validator.validate(dto);
 
         boolean containsCoinsViolation = violations.stream()
                                             .anyMatch(v -> v.getPropertyPath().toString().equals("coins"));

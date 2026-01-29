@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import poltergeist.esponjoso.api.dtos.UserBasicResponseDTO;
-import poltergeist.esponjoso.api.dtos.UserDTO;
 import poltergeist.esponjoso.api.dtos.UserRequestDTO;
+import poltergeist.esponjoso.api.dtos.UserResponseDTO;
 import poltergeist.esponjoso.api.services.UserService;
 
 import java.net.URI;
@@ -35,13 +35,13 @@ public class UserController
     }
 
     @PostMapping("/createUser")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserRequestDTO userRequestDTO, UriComponentsBuilder uriComponentsBuilder)
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserRequestDTO userRequestDTO, UriComponentsBuilder uriComponentsBuilder)
     {        
-        UserDTO created = userService.createUser(userRequestDTO);
+        UserResponseDTO created = userService.createUser(userRequestDTO);
         
         URI location = uriComponentsBuilder
                         .path("/users/createUser")
-                        .buildAndExpand(created.getUserId())
+                        .buildAndExpand(created.userId())
                         .toUri();
 
         return ResponseEntity.created(location).body(created);

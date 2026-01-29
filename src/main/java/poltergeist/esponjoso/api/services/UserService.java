@@ -5,26 +5,37 @@ import org.springframework.validation.annotation.Validated;
 
 import jakarta.validation.Valid;
 import poltergeist.esponjoso.api.dtos.UserBasicResponseDTO;
-import poltergeist.esponjoso.api.dtos.UserDTO;
 import poltergeist.esponjoso.api.dtos.UserRequestDTO;
+import poltergeist.esponjoso.api.dtos.UserResponseDTO;
+import poltergeist.esponjoso.api.entities.User;
+import poltergeist.esponjoso.api.mappers.UserResponseMapper;
 
 @Service
 @Validated
 public class UserService
 {
+    private final UserResponseMapper userResponseMapper;
+
+    public UserService(UserResponseMapper userResponseMapper)
+    {
+        this.userResponseMapper = userResponseMapper;
+    }
+
     public UserBasicResponseDTO getBasicUserInformation(double userId)
     {
         return null;
     }
 
-    //TODO Remember to add @Valid at UserDTO when this service is enable
-    public UserDTO createUser(@Valid UserRequestDTO userRequestDTO)
+    public UserResponseDTO createUser(@Valid UserRequestDTO userRequestDTO)
     {
-        UserDTO userDTO = new UserDTO();
+        User userDTO = new User();
         userDTO.setUsername(userRequestDTO.username());
         userDTO.setEmail(userRequestDTO.email());
         userDTO.setPassword(userRequestDTO.password());
         userDTO.setUserId("DUMMY XD");
-        return userDTO;
+
+        UserResponseDTO useResponseDTO = userResponseMapper.toUserResponseDTO(userDTO);
+
+        return useResponseDTO;
     }
 }

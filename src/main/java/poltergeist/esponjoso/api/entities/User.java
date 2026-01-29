@@ -1,4 +1,4 @@
-package poltergeist.esponjoso.api.dtos;
+package poltergeist.esponjoso.api.entities;
 
 import poltergeist.esponjoso.api.enums.AccountStatusEnum;
 import poltergeist.esponjoso.api.enums.AccountTypeEnum;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO
+public class User
 {
     @NotBlank(message = "{user.id.notBlank}")
     private String userId;

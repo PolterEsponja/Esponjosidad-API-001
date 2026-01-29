@@ -2,12 +2,12 @@ package poltergeist.esponjoso.api.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import poltergeist.esponjoso.api.dtos.UserDTO;
+import poltergeist.esponjoso.api.entities.User;
 
-public class ValidUserStatisticsValidator implements ConstraintValidator<ValidUserStatistics, UserDTO.UserStatistics>
+public class ValidUserStatisticsValidator implements ConstraintValidator<ValidUserStatistics, User.UserStatistics>
 {
     @Override
-    public boolean isValid(UserDTO.UserStatistics userStatistics, ConstraintValidatorContext constraintValidatorContext)
+    public boolean isValid(User.UserStatistics userStatistics, ConstraintValidatorContext constraintValidatorContext)
     {
         if(userStatistics == null) return true;
 

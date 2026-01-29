@@ -4,16 +4,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.ReportingPolicy;
 
-import poltergeist.esponjoso.api.dtos.UserBasicResponseDTO;
+import poltergeist.esponjoso.api.dtos.UserResponseDTO;
 import poltergeist.esponjoso.api.entities.User;
 
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.ERROR,
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
 )
-public interface UserBasicResponseMapper
+public interface UserResponseMapper
 {
-    UserBasicResponseDTO toUserBasicResponseDTO(User userDTO);
+    UserResponseDTO toUserResponseDTO(User userDTO);
 
-    UserBasicResponseDTO.UserAccountInformation toBasicUserAccountInformation(User.UserAccountInformation userAccountInformationa);
+    UserResponseDTO.UserAccountInformation toUserAccountInformation(User.UserAccountInformation userAccountInformation);
+
+    UserResponseDTO.UserStatistics toUserStatistics(User.UserStatistics userStatistics);
 }
